@@ -6,7 +6,7 @@ import twitter from '../assets/twitter.png';
 
 const Navbar: React.FC = () => {
   return (
-    <nav className=" top-0 left-0 right-0 z-50 shadow-md backdrop-blur-sm w-full bg-gray-900 bg-opacity-50 absolute">
+    <nav className=" top-0 left-0 right-0 z-50 shadow-md backdrop-blur-70 w-full bg-transparent bg-opacity-70 absolute fixed">
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between text-white h-16">
         
         {/* Left: Logo */}
@@ -23,8 +23,8 @@ const Navbar: React.FC = () => {
 
         {/* Right: Twitter Icon */}
         <div className="text-xl">
-          <a href="#" className="hover:text-cyan-400">
-            <img src={twitter} alt="Twitter" className="h-8 w-8" width={28.8} height={24} />
+          <a href="#">
+            <img src={twitter} alt="Twitter" className="hover:text-cyan-300" width={28.8} height={24} />
           </a>
         </div>
       </div>
