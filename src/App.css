@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: 'StretchPro';
-  src: url('./fonts/StretchPro.otf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
+    font-family: "StretchPro";
+    src: url("./fonts/StretchPro.otf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
 }
 
 @font-face {
-  font-family: 'Nunito';
-  src: url('./fonts/Nunito-VariableFont_wght.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
+    font-family: "Nunito";
+    src: url("./fonts/Nunito-VariableFont_wght.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
 }
 
 /* *{
@@ -19,9 +19,15 @@
 } */
 
 .nunito {
-  font-family: 'Nunito', sans-serif;
+    font-family: "Nunito", sans-serif;
 }
 
 .stretch {
-  font-family: 'StretchPro', sans-serif;
+    font-family: "StretchPro", sans-serif;
+}
+
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: "Nunito", sans-serif;
 }
