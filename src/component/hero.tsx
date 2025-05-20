@@ -6,7 +6,7 @@ import playlogo from '../assets/play_circle_24dp_E8EAED_FILL1_wght300_GRAD0_opsz
 const Hero = () => {
   return (
 
-    <section className="flex flex-col items-center justify-center text-center lg:mt-40 sm:mt-20 px-6 py-20 width[1328px] height[342px] top[388px] left[200px] bg-cover bg-center">
+    <section className="flex flex-col items-center justify-center text-center lg:mt-40 sm:mt-20 px-6 py-20 width-[1328px] height-[342px] top[388px] left[200px] bg-cover bg-center">
         <h1 className="text-4xl sm:text-6xl font-extrabold leading-tight mb-6 stretch text-white">
           SEAMLESS TRANSFER<br />
           YOUR MUSIC PLAYLIST<br />
@@ -25,8 +25,10 @@ const Hero = () => {
             <img src={playlogo} alt='Play graphic' className='inline-block ml-2' />
           </button>
         </div>
-      </section>
+      </section>  
+  
   )
+
 }
 
 export default Hero
