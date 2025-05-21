@@ -1,4 +1,4 @@
-import React from 'react';
+
 import search from '../assets/Frame 63.png'
 import tracks from '../assets/tracks.png'
 import musictypes from '../assets/music.png'
@@ -46,7 +46,7 @@ const StepByStepProcess = () => {
           <section className="bg-black text-white py-10 px-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
         {songsData.map((song) => (
-          <div key={song.id} className="flex items-start gap-2 bg-gray-900 p-4 rounded-lg">
+          <div key={song.id} className="flex items-start gap-2 p-4 rounded-lg">
             <img src={song.img} alt={song.title} className="w-12 h-12 object-cover rounded-md" />
             <div>
               <h3 className="font-bold text-white">{song.title}</h3>
