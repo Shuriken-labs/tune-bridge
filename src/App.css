@@ -1,4 +1,5 @@
 @import "tailwindcss";
+
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
@@ -156,4 +157,10 @@ body {
   body {
     @apply bg-background text-foreground;
     }
+
+
+body {
+    font-size: 16px;
+    background-color: rgb(12, 12, 12);
+
 }
