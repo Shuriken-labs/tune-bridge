@@ -1,4 +1,4 @@
-import React from "react";
+
 import walletlogo from "../assets/Vector.png";
 import playlogo from "../assets/play_circle_24dp_E8EAED_FILL1_wght300_GRAD0_opsz24 1.png";
 

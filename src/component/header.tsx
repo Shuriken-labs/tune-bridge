@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 
 const Navbar: React.FC = () => {
   return (
-    <nav className=" top-0 left-0 right-0 z-50 shadow-md backdrop-blur-70 w-full bg-transparent bg-opacity-70 absolute fixed">
+    <nav className=" top-0 left-0 right-0 z-50 shadow-md backdrop-blur-70 w-full bg-transparent bg-opacity-70 absolute border-b-[0.5px] border-gray-400 border-w-[80%]">
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between text-white h-16">
         
         {/* Left: Logo */}

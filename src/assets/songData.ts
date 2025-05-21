@@ -13,7 +13,7 @@ import always from './images/i-will-always.png'
 import stop1 from './images/cant-stop.png'
 import stitches from './images/stitches.png'
 import rolling from './images/rolling-the-deep.png'
-import radioactive from './images/radioactive.png'
+// import radioactive from './images/radioactive.png'
 
 
 const songs = [
