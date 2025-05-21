@@ -4,7 +4,7 @@ import playlogo from "../assets/play_circle_24dp_E8EAED_FILL1_wght300_GRAD0_opsz
 
 const Hero = () => {
     return (
-        <section className="h-screen flex flex-col items-center justify-center text-center  px-6 bg-cover bg-center bg-no-repeat">
+        <section className="h-[100dvh] flex flex-col items-center justify-center text-center  px-6 bg-cover bg-center bg-no-repeat">
             <h1 className="text-4xl sm:text-6xl font-extrabold leading-tight mb-6 stretch text-white">
                 SEAMLESS TRANSFER
                 <br />

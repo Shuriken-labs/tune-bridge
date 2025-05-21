@@ -1,12 +1,33 @@
 // Navbar.tsx
-import React from "react";
+import { useEffect, useState } from "react";
 import logo from "../assets/logo.png";
 import twitter from "../assets/twitter.png";
 import { NavLink } from "react-router-dom";
 
 const Navbar: React.FC = () => {
+    const [isScrolled, setIsScrolled] = useState(false);
+    useEffect(() => {
+        window.addEventListener("scroll", () => {
+            const scrollY = window.scrollY;
+
+            if (scrollY > 10) {
+                setIsScrolled(true);
+                console.log("User has scrolled down");
+            } else {
+                setIsScrolled(false);
+                console.log("User is at the top");
+            }
+        });
+        //         return () => {
+        //             window.removeEventListener("scroll", () => {});
+        //         };
+    }, []);
     return (
-        <nav className="shadow-md backdrop-blur-70 w-full bg-transparent bg-opacity-70 relative z-[2]">
+        <nav
+            className={`shadow-md backdrop-blur-[10px] w-full transition-all duration-[0.5s] ease-in-out bg-transparent bg-opacity-70 z-[2] ${
+                isScrolled ? "fixed" : "relative"
+            }`}
+        >
             <div className="max-w-7xl mx-auto px-4 flex items-center justify-between text-white h-16">
                 {/* Left: Logo */}
                 <NavLink
