@@ -8,17 +8,17 @@ import Profile from './component/myProfile'
 
 function App() {
    return (
-    // <div>
-    //   <div className="flex flex-col text-amber-50"
-    // style={{
-    //     backgroundImage: `url(${heroimg})`,
-    //   }}>
-    //   <Navbar/>
-    //   <Hero/>
-    // </div>
-    // <StepByStepProcess/>
-    // </div>
-    <Profile/>
+    <div>
+      <div className="flex flex-col text-amber-50"
+    style={{
+        backgroundImage: `url(${heroimg})`,
+      }}>
+      <Navbar/>
+      <Hero/>
+    </div>
+    <StepByStepProcess/>
+    </div>
+    
   )
 }
 
