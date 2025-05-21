@@ -14,9 +14,14 @@
     font-style: normal;
 }
 
-/* *{
-  font-family: 'StretchPro';
-} */
+@font-face {
+    font-family: "Stretch-sm";
+    src: url("./fonts/StretchPro-sm.otf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 
 .nunito {
     font-family: "Nunito", sans-serif;
@@ -24,6 +29,10 @@
 
 .stretch {
     font-family: "StretchPro", sans-serif;
+}
+
+.stretch-sm {
+    font-family: "Stretch-sm", sans-serif;
 }
 
 body {

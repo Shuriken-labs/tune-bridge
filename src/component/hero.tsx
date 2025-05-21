@@ -11,7 +11,7 @@ const Hero = () => {
           YOUR MUSIC PLAYLIST<br />
           ACROSS PLATFORMS
         </h1>
-        <p className="mb-10 max-w-xl font-Nunito font-light text-32px text-center nunito ">
+        <p className="mb-10 max-w-xl font-light text-32px text-center nunito ">
           Transform your music experience with AI-powered playlist creation
         </p>
         <div className="flex gap-4">
@@ -24,6 +24,7 @@ const Hero = () => {
             <img src={playlogo} alt='Play graphic' className='inline-block ml-2' />
           </button>
         </div>
+        
       </section>
   )
 }
