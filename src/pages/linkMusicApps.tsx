@@ -38,7 +38,7 @@ export default function LinkMusicApps() {
     return (
         <div className="w-screen h-screen">
             <Navbar />
-            <div className="size-full inner flex flex-col items-center py-[5rem] gap-[40px] ">
+            <div className="size-full inner flex flex-col items-center py-[5rem] gap-[40px] text-white ">
                 <p className="text-[64px] stretch text-center leading-none">
                     LINK YOUR MUSIC <br />
                     APPS
@@ -60,7 +60,7 @@ export default function LinkMusicApps() {
                                 width={64.5}
                                 height={64.5}
                             />
-                            <p className="text-[24px] ">{app.name}</p>
+                            <p className="text-[24px] text-white">{app.name}</p>
                         </div>
                     ))}
                 </div>
