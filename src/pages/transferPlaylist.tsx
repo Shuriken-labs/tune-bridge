@@ -1,18 +1,34 @@
+import { useNavigate } from "react-router-dom";
 import Navbar from "../component/header";
 import CircleArrow from "../assets/play_circle_24dp_E8EAED_FILL1_wght300_GRAD0_opsz24 1.png";
 import CircleDown from "../assets/drop-down.png";
+import BackIcon from "../assets/back-icon.png"; // ⬅️ Add your own back icon here
 import BottomNav from "../component/Bottom-nav";
 
 const TransferPlaylist = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="w-screen h-screen">
-      <Navbar />
-      <section className="w-full min-h-screen flex items-center justify-center bg-gradient-to-br from-black to-[#001f1f] px-4 py-10">
+      <div className="hidden md:flex">
+        <Navbar />
+      </div>
+
+      <section className="relative w-full min-h-screen bg-gradient-to-br from-black to-[#001f1f] px-4 pt-20 pb-32 flex items-start justify-center">
+        <div className="absolute top-5 left-4 z-10 md:hidden">
+          <button
+            onClick={() => navigate(-1)}
+            className="bg-gray-800 rounded-full p-2 text-white"
+          >
+            <img src={BackIcon} alt="Back" className="w-5 h-5" />
+          </button>
+        </div>
+
         <div className="w-full max-w-[918px]">
           {/* Title */}
-          <h2 className="sm:text-5xl font-extrabold text-white text-center stretch mb-10 ">
-            TRANSFER YOUR <br />
-            PLAYLIST
+          <h2 className="text-3xl sm:text-5xl md:text-6xl stretch font-extrabold text-white text-center mb-10">
+            TRANSFER <span className="hidden md:inline">YOUR</span> <br />
+            <span className="inline md:block">PLAYLIST</span>
           </h2>
 
           {/* Form */}
@@ -24,7 +40,7 @@ const TransferPlaylist = () => {
                 type="text"
                 placeholder="Playlist Name"
                 readOnly
-                className="bg-[#1f1f1f] text-white px-4 py-3 rounded-md pr-10 cursor-pointer "
+                className="bg-[#1f1f1f] text-white px-4 py-3 rounded-md pr-10 cursor-pointer"
               />
               <img
                 src={CircleDown}
@@ -33,9 +49,9 @@ const TransferPlaylist = () => {
               />
             </div>
 
+            {/* Platform Dropdown */}
             <div className="flex flex-col">
               <label className="text-white mb-2">Select target Platform</label>
-
               <div className="relative w-full">
                 <select className="appearance-none cursor-pointer bg-[#1f1f1f] text-white px-4 py-3 rounded-md border border-[#00C6FF] focus:outline-none focus:ring-2 focus:ring-blue-500 w-full">
                   <option>Apple Music</option>
@@ -43,8 +59,6 @@ const TransferPlaylist = () => {
                   <option>YouTube Music</option>
                   <option>Amazon Music</option>
                 </select>
-
-                {/* Custom dropdown icon */}
                 <img
                   src={CircleDown}
                   alt="Dropdown"
@@ -67,6 +81,7 @@ const TransferPlaylist = () => {
           </form>
         </div>
       </section>
+
       {/* Bottom Navigation */}
       <BottomNav />
     </div>

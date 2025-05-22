@@ -1,28 +1,69 @@
-// src/component/BottomNav.jsx
-import HomeIcon from "../assets/home-active.png";
-import TransferIcon from "../assets/transfer.png";
-import DiscoverIcon from "../assets/discover.png";
-import ProfileIcon from "../assets/profile-m.png";
+// component/BottomNav.jsx
+import { Link, useLocation } from "react-router-dom";
+
+// Active and Inactive Icons
+import HomeActive from "../assets/home-active.png";
+import HomeInactive from "../assets/home-innactive.png";
+
+import TransferActive from "../assets/transfer-active.png";
+import TransferInactive from "../assets/transfer-innactive.png";
+
+import DiscoverActive from "../assets/discover-active.png";
+import DiscoverInactive from "../assets/discover-innactive.png";
+
+import ProfileActive from "../assets/profile-active.png";
+import ProfileInactive from "../assets/profile-innactive.png";
 
 const BottomNav = () => {
+  const location = useLocation();
+
+  const tabs = [
+    {
+      name: "Home",
+      path: "/",
+      icon: HomeInactive,
+      activeIcon: HomeActive,
+    },
+    {
+      name: "Transfer",
+      path: "/transfer",
+      icon: TransferInactive,
+      activeIcon: TransferActive,
+    },
+    {
+      name: "Discover",
+      path: "/discover",
+      icon: DiscoverInactive,
+      activeIcon: DiscoverActive,
+    },
+    {
+      name: "Profile",
+      path: "/profile",
+      icon: ProfileInactive,
+      activeIcon: ProfileActive,
+    },
+  ];
+
   return (
-    <div className="fixed bottom-0 left-0 w-full bg-gradient-to-r from-[#1f1f1f] via-[#285DBC] to-[#5808B9] px-6 py-2 flex justify-around items-center rounded-t-xl md:hidden z-50">
-      <button className="flex flex-col items-center text-white text-xs focus:outline-none">
-        <img src={HomeIcon} alt="Home" className="w-5 h-5 mb-1" />
-        Home
-      </button>
-      <button className="flex flex-col items-center text-white text-xs focus:outline-none">
-        <img src={TransferIcon} alt="Transfer" className="w-5 h-5 mb-1" />
-        Transfer
-      </button>
-      <button className="flex flex-col items-center text-white text-xs focus:outline-none">
-        <img src={DiscoverIcon} alt="Discover" className="w-5 h-5 mb-1" />
-        Discover
-      </button>
-      <button className="flex flex-col items-center text-white text-xs focus:outline-none">
-        <img src={ProfileIcon} alt="Profile" className="w-5 h-5 mb-1" />
-        Profile
-      </button>
+    <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 bg-gradient-to-r from-[#1f1f1f] via-[#285DBC] to-[#5808B9] rounded-[40px] px-6 py-2 flex justify-around items-center w-[90%] max-w-md shadow-lg md:hidden">
+      {tabs.map((tab) => {
+        const isActive = location.pathname === tab.path;
+
+        return (
+          <Link
+            to={tab.path}
+            key={tab.name}
+            className="flex flex-col items-center text-white text-xs focus:outline-none"
+          >
+            <img
+              src={isActive ? tab.activeIcon : tab.icon}
+              alt={tab.name}
+              className="w-5 h-5 mb-1"
+            />
+            {tab.name}
+          </Link>
+        );
+      })}
     </div>
   );
 };
