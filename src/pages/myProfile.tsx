@@ -1,12 +1,12 @@
-import Navbar from "./header";
+import Navbar from "../component/header";
 import profile from "../assets/profile.png";
 import Spotify from "../assets/spotify.png";
-import ProgressBar from "../component/Progressbar"; // adjust the path as needed
+
 import { Progress } from "../components/ui/progress";
 
 const Profile = () => {
   return (
-    <>
+    <div className="w-screen h-screen">
       <Navbar />
 
       <div className="flex p-6">
@@ -49,7 +49,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -18,9 +18,9 @@ const Navbar: React.FC = () => {
 
         {/* Desktop Nav Links */}
         <div className="hidden md:flex space-x-8 text-sm font-semibold">
-          <a href="#" className="hover:text-cyan-300">HOMEPAGE</a>
+          <a href="/" className="hover:text-cyan-300">HOMEPAGE</a>
           <a href="#" className="hover:text-cyan-300">DISCOVER</a>
-          <a href="#" className="hover:text-cyan-300">PROFILE</a>
+          <a href="/profile" className="hover:text-cyan-300">PROFILE</a>
         </div>
 
         {/* Twitter Icon + Hamburger Menu */}
@@ -43,7 +43,7 @@ const Navbar: React.FC = () => {
       {/* Mobile Menu Dropdown */}
       {isOpen && (
         <div className="md:hidden bg-black bg-opacity-90 px-4 py-4 space-y-4 text-white text-center text-sm font-semibold">
-          <a href="#" className="block hover:text-cyan-300">HOMEPAGE</a>
+          <a href="/" className="block hover:text-cyan-300">HOMEPAGE</a>
           <a href="#" className="block hover:text-cyan-300">DISCOVER</a>
           <a href="/profile" className="block hover:text-cyan-300">PROFILE</a>
         </div>

@@ -3,7 +3,7 @@ import Navbar from './component/header'
 import Hero from './component/hero'
 import heroimg from './assets/Property 1=Desktop - 2.png'
 import StepByStepProcess from './component/process'
-import Profile from './component/myProfile'
+
 
 
 function App() {

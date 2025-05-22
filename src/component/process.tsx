@@ -61,12 +61,12 @@ const StepByStepProcess = () => {
             Get suggestions for similar tracks
           </p>
 
-          <section className="bg-black text-white py-10 px-4 w-full">
+          <section className=" text-white py-10 px-4 w-full">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
               {songsData.map((song) => (
                 <div
                   key={song.id}
-                  className="flex items-start gap-3 p-4 rounded-lg bg-zinc-900"
+                  className="flex items-start gap-3 p-4 rounded-lg"
                 >
                   <img
                     src={song.img}
