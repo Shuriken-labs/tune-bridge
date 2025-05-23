@@ -11,7 +11,7 @@ createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
-      <Route path="/linkMusicApps" element={<LinkMusicApps />} />
+      <Route path="/link-music-apps" element={<LinkMusicApps />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/transfer" element={<TransferPlaylist />} />
       <Route path="/playlist" element={<PlaylistBreakdown />} />

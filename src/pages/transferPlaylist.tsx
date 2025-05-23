@@ -14,7 +14,7 @@ const TransferPlaylist = () => {
         <Navbar />
       </div>
 
-      <section className="relative w-full min-h-screen bg-gradient-to-br from-black to-[#001f1f] px-4 pt-20 pb-32 flex items-start justify-center">
+      <section className="relative w-full min-h-screen bg-gradient-to-br from-black to-[#001f1f] px-4 pt-20 pb-32 flex items-start justify-center ">
         <div className="absolute top-5 left-4 z-10 md:hidden">
           <button
             onClick={() => navigate(-1)}

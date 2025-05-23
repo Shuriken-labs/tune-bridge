@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "../assets/logo.png";
+import logo from "../assets/Logo.png";
 import twitter from "../assets/twitter.png";
 import { NavLink } from "react-router-dom";
 import { Menu, X } from "lucide-react";
