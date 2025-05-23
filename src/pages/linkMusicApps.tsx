@@ -2,8 +2,12 @@ import { useMemo, useState } from "react";
 import Navbar from "../component/header";
 import walletlogo from "../assets/Vector.png";
 import clsx from "clsx";
+import { link_platform, type ConnectedPlatform } from "../utils/apis";
+import { getLocalStorage } from "../utils/localStorage";
+import { useNavigate } from "react-router-dom";
 
 export default function LinkMusicApps() {
+  const navigate = useNavigate();
   const MUSIC_APP_LIST = useMemo(() => {
     return [
       {
@@ -63,6 +67,8 @@ export default function LinkMusicApps() {
     }));
   };
 
+  console.log(toggleConnection);
+
   return (
     <div className="w-screen h-screen">
       <Navbar />
@@ -97,7 +103,21 @@ export default function LinkMusicApps() {
                 <p className="text-[24px] text-white">{app.name}</p>
                 {app.active && (
                   <button
-                    onClick={() => toggleConnection(app.name)}
+                    onClick={() => {
+                      let platform: ConnectedPlatform;
+                      if (app.name.toLowerCase().includes("spotify")) {
+                        platform = "SPOTIFY";
+                      } else {
+                        platform = "YOUTUBE";
+                      }
+
+                      let user_id = getLocalStorage("user", "");
+                      if (user_id.length == 0) {
+                        return navigate("/");
+                      }
+                      link_platform(platform, user_id);
+                      // toggleConnection(app.name);
+                    }}
                     className={clsx(
                       "flex items-center gap-2 justify-center text-white py-1 rounded-full font-semibold transition hover:opacity-90 min-w-36",
                       isConnected

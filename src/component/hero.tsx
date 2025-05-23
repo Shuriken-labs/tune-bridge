@@ -10,6 +10,7 @@ import { signup } from "../utils/apis";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import type { AxiosError } from "axios";
+import { setLocalStorage } from "../utils/localStorage";
 
 const Hero = () => {
   // const { disconnect } = useDisconnect();
@@ -42,9 +43,12 @@ const Hero = () => {
     try {
       const response = await signup(wallet_address);
 
-      if (response.status == 201) {
-        navigate("/link-music-apps");
+      console.log(response);
+
+      if (response.status == 201 || response.status == 200) {
+        setLocalStorage("user", response.data.data.user._id);
         setIsLoading(false);
+        navigate("/link-music-apps");
       } else {
         console.log(response.data?.message);
         setIsFailed(true);
@@ -95,6 +99,7 @@ const Hero = () => {
               connectWallet();
             }
           }}
+          disabled={isLoading}
         >
           {isLoading
             ? "Loading.."
