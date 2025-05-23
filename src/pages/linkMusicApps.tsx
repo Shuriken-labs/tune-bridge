@@ -1,13 +1,59 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Navbar from "../component/header";
 import walletlogo from "../assets/Vector.png";
 import clsx from "clsx";
-import { link_platform, type ConnectedPlatform } from "../utils/apis";
-import { getLocalStorage } from "../utils/localStorage";
+import { link_platform, signup, type ConnectedPlatform } from "../utils/apis";
+import { getLocalStorage, setLocalStorage } from "../utils/localStorage";
 import { useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
+import { useAccount } from "@starknet-react/core";
+
+// interface IAuth {
+//   accessToken: string;
+//   refreshToken: string;
+//   scope: string;
+//   tokenType: string;
+//   updatedAt: string;
+//   _id: string;
+// }
+
+const YT_LOCALSTORAGE = "yt_auth";
+const SPOTIFY_LOCALSTORAGE = "spotify_auth";
 
 export default function LinkMusicApps() {
   const navigate = useNavigate();
+
+  const { address } = useAccount();
+
+  // const [isLoading, setIsLoading] = useState<boolean>();
+
+  const [searchParams] = useSearchParams();
+  const userId = searchParams.get("userId");
+  console.log(userId);
+
+  useEffect(() => {
+    if (!address) {
+      navigate("/");
+      return;
+    }
+
+    signup(address).then((res) => {
+      const yt = res.data?.data?.user?.youtube;
+      const spotify = res.data?.data?.user?.spotify;
+
+      setLocalStorage(YT_LOCALSTORAGE, yt);
+      setLocalStorage(SPOTIFY_LOCALSTORAGE, spotify);
+
+      // Determine connected platforms
+      const newConnectedPlatforms = { ...connectedPlatforms };
+      if (yt && yt.accessToken) newConnectedPlatforms["Youtube Music"] = true;
+      if (spotify && spotify.accessToken)
+        newConnectedPlatforms["Spotify"] = true;
+
+      setConnectedPlatforms(newConnectedPlatforms);
+    });
+  }, []);
+
   const MUSIC_APP_LIST = useMemo(() => {
     return [
       {
@@ -104,6 +150,12 @@ export default function LinkMusicApps() {
                 {app.active && (
                   <button
                     onClick={() => {
+                      if (isConnected) {
+                        navigate("/transfer", {
+                          state: { origin: app.name }
+                        });
+                      }
+
                       let platform: ConnectedPlatform;
                       if (app.name.toLowerCase().includes("spotify")) {
                         platform = "SPOTIFY";

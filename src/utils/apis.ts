@@ -17,7 +17,16 @@ const signup = async (
   return response;
 };
 
-const link_platform = async (
+const link_platform = async (type: ConnectedPlatform, user_id: string) => {
+  let platform;
+  if (type == "SPOTIFY") {
+    platform = "spotify";
+  } else platform = "youtube";
+
+  window.location.href = `${SERVER_URL}/${platform}/login?userId=${user_id}`;
+};
+
+const fetch_playlists = async (
   type: ConnectedPlatform,
   user_id: string
 ): Promise<AxiosResponse<any, any>> => {
@@ -25,12 +34,12 @@ const link_platform = async (
   if (type == "SPOTIFY") {
     platform = "spotify";
   } else platform = "youtube";
-  const response = await axios.get(`${SERVER_URL}/${platform}/login`, {
-    params: {
-      userId: user_id
-    }
-  });
+
+  const response = await axios.get(
+    `${SERVER_URL}/${platform}/get-${platform}-playlists/${user_id}`
+  );
+
   return response;
 };
 
-export { signup, link_platform };
+export { signup, link_platform, fetch_playlists };
