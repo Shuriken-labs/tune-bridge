@@ -154,6 +154,7 @@ export default function LinkMusicApps() {
                         navigate("/transfer", {
                           state: { origin: app.name }
                         });
+                        return;
                       }
 
                       let platform: ConnectedPlatform;
