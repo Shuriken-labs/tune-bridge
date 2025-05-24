@@ -77,7 +77,7 @@ const Hero = () => {
   return (
     <section className="min-h-screen flex flex-col items-center justify-center text-center px-4 md:px-6 py-10 bg-cover bg-center bg-no-repeat">
       <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 text-white stretch-sm text-balance">
-        SEAMLESS TRANSFER
+        SEAMLESSLY TRANSFER
         <br />
         YOUR MUSIC PLAYLIST
         <br />
