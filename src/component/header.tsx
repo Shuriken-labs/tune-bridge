@@ -30,10 +30,10 @@ const Navbar: React.FC = () => {
             HOMEPAGE
           </a>
           <a href="#" className="hover:text-cyan-300">
-            DISCOVER
-          </a>
-          <a href="/profile" className="hover:text-cyan-300">
             PROFILE
+          </a>
+          <a href="/pricing" className="hover:text-cyan-300">
+            PRICING
           </a>
         </div>
 

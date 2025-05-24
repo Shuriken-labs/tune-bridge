@@ -6,7 +6,12 @@ import { link_platform, signup, type ConnectedPlatform } from "../utils/apis";
 import { getLocalStorage, setLocalStorage } from "../utils/localStorage";
 import { useNavigate } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
-import { useAccount } from "@starknet-react/core";
+import { useAccount, useContract, useProvider } from "@starknet-react/core";
+import type { IUser } from "./Pricing";
+import contract_abi from "../dev/tunebridge_subscription_TuneBridge.contract_class.json";
+// import erc20_contract_abi from "../erc20/dev/erc20_erc20.contract_class.json";
+import { CONTRACT_ADDRESS } from "../utils/constants";
+import type { Abi } from "starknet";
 
 // interface IAuth {
 //   accessToken: string;
@@ -24,8 +29,29 @@ export default function LinkMusicApps() {
   const navigate = useNavigate();
 
   const { address } = useAccount();
+  const [userState, setUserState] = useState<IUser>();
 
-  // const [isLoading, setIsLoading] = useState<boolean>();
+  const { provider } = useProvider();
+
+  const { contract: contract1 } = useContract({
+    abi: contract_abi.abi as Abi,
+    address: CONTRACT_ADDRESS,
+    provider: provider
+  });
+
+  const fetchUserData = async () => {
+    if (!contract1 || !address) return;
+    console.log("reached here");
+    try {
+      const response = await (contract1.call as any)("fetch_user", [address]);
+
+      setUserState(response);
+      console.log("User state:", response);
+      return response;
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  };
 
   const [searchParams] = useSearchParams();
   const userId = searchParams.get("userId");
@@ -52,7 +78,19 @@ export default function LinkMusicApps() {
 
       setConnectedPlatforms(newConnectedPlatforms);
     });
+
+    fetchUserData();
   }, []);
+
+  // const hasActiveSubscription = (index: number): boolean => {
+  //   if (!userState) return false;
+
+  //   // `userState.amount` should match pricing[index] if subscribed to that plan
+  //   const userAmount = BigInt(userState.amount.toString());
+  //   const currentPlanAmount = pricing[index];
+
+  //   return userAmount === BigInt(currentPlanAmount?.toString() || "0");
+  // };
 
   const MUSIC_APP_LIST = useMemo(() => {
     return [
@@ -150,6 +188,13 @@ export default function LinkMusicApps() {
                 {app.active && (
                   <button
                     onClick={() => {
+                      if (
+                        userState &&
+                        BigInt(userState.amount.toString()) == BigInt(0)
+                      ) {
+                        navigate("/pricing");
+                      }
+
                       if (isConnected) {
                         navigate("/transfer", {
                           state: { origin: app.name }

@@ -8,6 +8,7 @@ import LinkMusicApps from "./linkMusicApps";
 import Profile from "./myProfile";
 import TransferPlaylist from "./transferPlaylist";
 import PlaylistBreakdown from "./PlaylistBreakdown";
+import PricingPage from "./Pricing";
 
 const connectors = [
   new InjectedConnector({
@@ -31,6 +32,7 @@ const Page = () => {
           <Route path="/profile" element={<Profile />} />
           <Route path="/transfer" element={<TransferPlaylist />} />
           <Route path="/playlist" element={<PlaylistBreakdown />} />
+          <Route path="/pricing" element={<PricingPage />} />
         </Routes>
       </BrowserRouter>
     </StarknetConfig>

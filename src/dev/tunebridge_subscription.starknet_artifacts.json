@@ -1,0 +1,1 @@
+{"version":1,"contracts":[{"id":"d6st9q4di8u1o","package_name":"tunebridge_subscription","contract_name":"TuneBridge","module_path":"tunebridge_subscription::TuneBridge","artifacts":{"sierra":"tunebridge_subscription_TuneBridge.contract_class.json","casm":null}}]}
