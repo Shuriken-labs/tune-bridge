@@ -8,7 +8,7 @@ import type { IMusic, ISpotify } from "./transferPlaylist";
 import { useEffect, useState } from "react";
 import {
   add_tracks_to_destination_platform,
-  create_playlist,
+  create_playlist_in_destination,
   fetch_playlist_tracks,
   fetch_playlists_destination_platform,
   find_tracks_in_destination_platform,
@@ -191,6 +191,8 @@ const PlaylistBreakdown = () => {
 
               let playlists: string[] = [];
 
+              setBridgeStatus("Checking for existing Playlist...");
+
               if (
                 Array.isArray(existing_playlists) &&
                 existing_playlists.length > 0
@@ -204,6 +206,7 @@ const PlaylistBreakdown = () => {
                   );
 
                   if (playlistName && playlists.includes(playlistName)) {
+                    setBridgeStatus("Found one identical...");
                     const match = (existing_playlists as IMusic[]).find(
                       (p) => p.title === playlistName
                     );
@@ -216,6 +219,7 @@ const PlaylistBreakdown = () => {
                   );
 
                   if (playlistName && playlists.includes(playlistName)) {
+                    setBridgeStatus("Found one identical...");
                     const match = (existing_playlists as ISpotify[]).find(
                       (p) => p.name === playlistName
                     );
@@ -226,14 +230,18 @@ const PlaylistBreakdown = () => {
 
               // 👉 Create playlist only if it doesn't exist
               if (!playlist_id && playlistName) {
-                const response = await create_playlist(
+                setBridgeStatus("Creating New Playlist...");
+                const response = await create_playlist_in_destination(
                   platform,
                   user_id,
                   playlistName, // Use directly here
                   track.description // Assuming `track` is in scope
                 );
 
-                playlist_id = response.data.playlistId;
+                playlist_id =
+                  platform == "SPOTIFY"
+                    ? response.data.playlist.id
+                    : response.data.playlistId;
               }
 
               const tracks = trackItems.map((e: IYTMusic | ISpotifyMusic) => {
@@ -248,6 +256,7 @@ const PlaylistBreakdown = () => {
                     artists: e.artists
                   };
               });
+              setBridgeStatus("Finding Songs...");
 
               const response = await find_tracks_in_destination_platform(
                 platform,
@@ -260,13 +269,21 @@ const PlaylistBreakdown = () => {
                 .map((e) => e.videoId)
                 .filter((id): id is string => id !== null);
               console.log(filtered);
+              setBridgeStatus("Almost Done...");
 
-              add_tracks_to_destination_platform(
+              const completed = await add_tracks_to_destination_platform(
                 platform,
                 user_id,
                 playlist_id || "",
                 filtered
               );
+
+              console.log(completed.data.results);
+
+              setBridgeStatus("All Done ✌️..");
+              navigate("/", {
+                state: {}
+              });
             }}
           >
             {bridgeStatus}

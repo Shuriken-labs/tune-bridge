@@ -106,6 +106,38 @@ const create_playlist = async (
   return response;
 };
 
+const create_playlist_in_destination = async (
+  type: ConnectedPlatform,
+  user_id: string,
+  title: string,
+  description: string | undefined
+): Promise<AxiosResponse<any>> => {
+  let platform;
+  if (type == "SPOTIFY") {
+    platform = "youtube";
+  } else platform = "spotify";
+
+  const response = await axios.post(
+    `${SERVER_URL}/${platform}/create-playlist/${user_id}`,
+    type == "SPOTIFY"
+      ? {
+          title,
+          description,
+          privacyStatus: "public"
+        }
+      : {
+          name: title,
+          description,
+          privacyStatus: "public"
+        }
+  );
+
+  console.log("response from create playliist");
+  console.log(response);
+
+  return response;
+};
+
 interface ISongSearch {
   title: string;
   artists: string;
@@ -168,5 +200,6 @@ export {
   create_playlist,
   find_tracks_in_destination_platform,
   add_tracks_to_destination_platform,
-  fetch_playlists_destination_platform
+  fetch_playlists_destination_platform,
+  create_playlist_in_destination
 };
